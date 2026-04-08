@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucas — Finance & Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0D1B2A;
+    --navy2:  #162032;
+    --navy3:  #1E2D3E;
+    --slate:  #2C3E50;
+    --steel:  #4A6278;
+    --mist:   #8FA3B1;
+    --silver: #BDC9D2;
+    --cream:  #F0EDE6;
+    --paper:  #FAF8F4;
+    --gold:   #C9A84C;
+    --gold2:  #E8C97A;
+    --red:    #8B2635;
+    --white:  #FFFFFF;
+
+    --serif: 'Playfair Display', Georgia, serif;
+    --body:  'Source Serif 4', Georgia, serif;
+    --mono:  'IBM Plex Mono', monospace;
+
+    --transition: 0.3s ease;
+    --max: 1100px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.75;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 60px;
+    height: 64px;
+    background: rgba(13, 27, 42, 0.95);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--silver);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .hero-accent-line {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, transparent, var(--gold), var(--gold), transparent);
+    opacity: 0.6;
+  }
+
+  .hero-content { max-width: var(--max); margin: 0 auto; position: relative; }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.5vw, 30px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--mist);
+    margin-bottom: 40px;
+    line-height: 1.4;
+  }
+
+  .hero-desc {
+    max-width: 560px;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--silver);
+    line-height: 1.85;
+    margin-bottom: 52px;
+    border-left: 2px solid rgba(201,168,76,0.4);
+    padding-left: 24px;
+  }
+
+  .hero-cta {
+    display: flex; gap: 20px; flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    text-decoration: none;
+    transition: all var(--transition);
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+  }
+  .btn-primary:hover { background: var(--gold2); }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.5);
+    color: var(--gold);
+  }
+  .btn-outline:hover {
+    background: rgba(201,168,76,0.08);
+    border-color: var(--gold);
+  }
+
+  .hero-stats {
+    position: absolute; right: 0; top: 50%;
+    transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 0;
+  }
+
+  .hero-stat {
+    padding: 28px 40px;
+    border-left: 1px solid rgba(201,168,76,0.2);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+  .hero-stat:last-child { border-bottom: none; }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--steel);
+  }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 100px 60px; }
+
+  .section-inner { max-width: var(--max); margin: 0 auto; }
+
+  .section-header {
+    display: flex; align-items: flex-start; gap: 32px;
+    margin-bottom: 64px;
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    padding-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .section-title-block {}
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--navy2); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    color: var(--silver);
+    line-height: 1.9;
+    margin-bottom: 22px;
+    font-weight: 300;
+  }
+
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .about-text strong { color: var(--cream); font-weight: 600; }
+
+  .about-sidebar {}
+
+  .principle-card {
+    padding: 28px;
+    border: 1px solid rgba(201,168,76,0.15);
+    margin-bottom: 16px;
+    position: relative;
+    transition: border-color var(--transition);
+  }
+  .principle-card:hover { border-color: rgba(201,168,76,0.4); }
+  .principle-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: var(--gold); opacity: 0;
+    transition: opacity var(--transition);
+  }
+  .principle-card:hover::before { opacity: 1; }
+
+  .principle-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .principle-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .principle-text {
+    font-size: 14px;
+    color: var(--steel);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ─── PROJECTS ─── */
+  #projects { background: var(--navy); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(201,168,76,0.08);
+  }
+
+  .project-card {
+    background: var(--navy);
+    padding: 36px 32px;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    transition: background var(--transition);
+    cursor: pointer;
+  }
+
+  .project-card:hover { background: var(--navy3); }
+
+  .project-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform var(--transition);
+  }
+  .project-card:hover::after { transform: scaleX(1); }
+
+  .project-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .project-tag::before {
+    content: '';
+    display: block; width: 20px; height: 1px; background: var(--gold);
+  }
+
+  .project-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--steel);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+
+  .project-meta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+
+  .project-chip {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--mist);
+    background: rgba(143,163,177,0.08);
+    padding: 4px 12px;
+    border: 1px solid rgba(143,163,177,0.15);
+  }
+
+  /* ─── VIEWS ─── */
+  #views { background: var(--navy2); }
+
+  .views-list { display: flex; flex-direction: column; gap: 0; }
+
+  .view-item {
+    display: grid;
+    grid-template-columns: 140px 1fr auto;
+    gap: 40px;
+    align-items: baseline;
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    text-decoration: none;
+    transition: all var(--transition);
+    cursor: pointer;
+  }
+  .view-item:first-child { border-top: 1px solid rgba(201,168,76,0.1); }
+  .view-item:hover .view-title { color: var(--gold); }
+
+  .view-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--steel);
+    letter-spacing: 0.06em;
+    padding-top: 3px;
+  }
+
+  .view-content {}
+
+  .view-category {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .view-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.3;
+    margin-bottom: 8px;
+    transition: color var(--transition);
+    letter-spacing: -0.01em;
+  }
+
+  .view-excerpt {
+    font-size: 14px;
+    color: var(--steel);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .view-arrow {
+    font-size: 18px;
+    color: var(--steel);
+    transition: all var(--transition);
+    flex-shrink: 0;
+  }
+  .view-item:hover .view-arrow { color: var(--gold); transform: translateX(4px); }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: var(--navy);
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-text p {
+    font-size: 16px;
+    color: var(--silver);
+    line-height: 1.85;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .contact-links { display: flex; flex-direction: column; gap: 16px; }
+
+  .contact-link {
+    display: flex; align-items: center; gap: 20px;
+    text-decoration: none;
+    padding: 20px 24px;
+    border: 1px solid rgba(201,168,76,0.12);
+    transition: all var(--transition);
+  }
+  .contact-link:hover {
+    border-color: rgba(201,168,76,0.4);
+    background: rgba(201,168,76,0.04);
+  }
+
+  .contact-link-icon {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(201,168,76,0.3);
+    flex-shrink: 0;
+  }
+  .contact-link-icon svg { width: 16px; height: 16px; fill: var(--gold); }
+
+  .contact-link-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 2px;
+  }
+  .contact-link-value {
+    font-size: 15px;
+    color: var(--cream);
+    font-weight: 300;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 32px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-copy {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--steel);
+    letter-spacing: 0.06em;
+  }
+
+  .footer-motto {
+    font-family: var(--serif);
+    font-size: 13px;
+    font-style: italic;
+    color: var(--steel);
+  }
+
+  /* ─── DIVIDER ─── */
+  .gold-divider {
+    width: 60px; height: 1px;
+    background: var(--gold);
+    margin: 32px 0;
+    opacity: 0.6;
+  }
+
+  /* ─── COMING SOON ─── */
+  .coming-soon {
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 64px 48px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .cs-dots {
+    font-family: var(--mono);
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    opacity: 0.6;
+  }
+
+  .cs-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: -0.01em;
+  }
+
+  .cs-text {
+    font-size: 15px;
+    color: var(--steel);
+    font-weight: 300;
+    max-width: 480px;
+    line-height: 1.75;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--steel); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow  { animation: fadeUp 0.6s ease 0.1s both; }
+  .hero-name     { animation: fadeUp 0.6s ease 0.2s both; }
+  .hero-title    { animation: fadeUp 0.6s ease 0.3s both; }
+  .hero-desc     { animation: fadeUp 0.6s ease 0.4s both; }
+  .hero-cta      { animation: fadeUp 0.6s ease 0.5s both; }
+  .hero-stats    { animation: fadeUp 0.6s ease 0.6s both; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { gap: 20px; }
+    section { padding: 72px 24px; }
+    #hero { padding: 120px 24px 72px; }
+    .hero-stats { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .view-item { grid-template-columns: 1fr; gap: 4px; }
+    .view-date { display: none; }
+    footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">L —</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Research</a></li>
+    <li><a href="#views">Views</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-accent-line"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">MSc Finance & Accounting · Imperial College London</div>
+    <h1 class="hero-name">Lucas<br><em>Ogura Ito</em></h1>
+    <p class="hero-title">Macro Finance & Quantitative Finance</p>
+    <p class="hero-desc">
+      I study capital markets at the intersection of finance, mathematics, and programming —
+      combining market knowledge with the ability to build and implement quantitative models
+      through computational methods.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Research</a>
+      <a href="#views" class="btn btn-outline">Read My Views</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="stat-num">BBA</div>
+      <div class="stat-label">Finance & Business Analytics</div>
+    </div>
+    <div class="hero-stat">
+      <div class="stat-num">MSc</div>
+      <div class="stat-label">Finance & Accounting · In Progress</div>
+    </div>
+    <div class="hero-stat">
+      <div class="stat-num">ICL</div>
+      <div class="stat-label">Imperial College London</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div class="section-title-block">
+        <div class="section-label">Background</div>
+        <h2 class="section-title">About <em>Me</em></h2>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I am an <strong>MSc Finance & Accounting student at Imperial College Business School</strong>,
+          where I hold an Academic Excellence Scholarship. My undergraduate work — a Bachelor's in
+          Business Administration majoring in Finance and Business Analytics — gave me a rigorous
+          foundation in both quantitative methods and business strategy.
+        </p>
+        <p>
+          My goal is to develop into a <strong>multi-strategy professional</strong>, equally capable in
+          macro and quantitative investing. I believe these two approaches are not competing — they are
+          complementary. Combining top-down macro insight with the ability to build and implement
+          mathematical models through programming creates a skill set that is genuinely valuable
+          to any investment firm.
+        </p>
+        <p>
+          I am driven by curiosity and a commitment to constant improvement. I approach my craft
+          the same way I approach everything I do — with discipline and a desire to be among the best.
+          Outside of finance, I play drums and compete in swimming, disciplines that have reinforced
+          how I think about <strong>precision, consistency, and performance</strong>.
+        </p>
+        <div class="gold-divider"></div>
+        <p>
+          My ambition is straightforward: to be among the best in my field, within an environment
+          that rewards rigorous thinking and rewards those who keep getting better.
+        </p>
+      </div>
+      <div class="about-sidebar">
+        <div class="principle-card">
+          <span class="principle-num">Principle I</span>
+          <div class="principle-title">Data Drives Decisions</div>
+          <div class="principle-text">Opinions without evidence are just noise. Every investment view I hold is built from data — and updated when the data changes.</div>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">Principle II</span>
+          <div class="principle-title">Macro and Quant Are One</div>
+          <div class="principle-text">The best analysis combines top-down market insight with rigorous quantitative methods. I do not choose between the two — I develop both.</div>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">Principle III</span>
+          <div class="principle-title">Always Be Improving</div>
+          <div class="principle-text">Good enough is not the goal. I hold myself to a high standard, track my progress honestly, and stay committed to getting better at my craft every day.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div class="section-title-block">
+        <div class="section-label">Work</div>
+        <h2 class="section-title">Research & <em>Projects</em></h2>
+      </div>
+    </div>
+    <div class="coming-soon">
+      <div class="cs-dots">· · ·</div>
+      <div class="cs-title">Work in Progress</div>
+      <div class="cs-text">Research and project work is currently underway. This section will be updated as pieces are completed — check back soon.</div>
+    </div>
+  </div>
+</section>
+
+<!-- VIEWS -->
+<section id="views">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-title-block">
+        <div class="section-label">Perspectives</div>
+        <h2 class="section-title">My <em>Views</em></h2>
+      </div>
+    </div>
+    <div class="coming-soon">
+      <div class="cs-dots">· · ·</div>
+      <div class="cs-title">Coming Soon</div>
+      <div class="cs-text">Written perspectives on macro, markets, and finance are on the way. This section will be populated as pieces are published.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div class="section-title-block">
+        <div class="section-label">Connect</div>
+        <h2 class="section-title">Get in <em>Touch</em></h2>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-text">
+        <p>
+          I am always open to conversations about macro, quantitative finance, and markets.
+          If you are working on something rigorous — whether in asset management, investment
+          research, or academia — I would be glad to connect.
+        </p>
+        <p>
+          I am currently open to roles in asset management, macro research, quantitative research,
+          and research assistant positions at investment firms or academic institutions.
+          I am based in London.
+        </p>
+        <div class="gold-divider"></div>
+        <p style="font-size: 14px; color: var(--steel);">
+          Response time: typically within 48 hours.
+        </p>
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:lucasoitobr@gmail.com">
+          <div class="contact-link-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">lucasoitobr@gmail.com</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/lucasoito/" target="_blank">
+          <div class="contact-link-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-value">linkedin.com/in/lucasoito</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://github.com/LucasIto17" target="_blank">
+          <div class="contact-link-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </div>
+          <div>
+            <div class="contact-link-label">GitHub</div>
+            <div class="contact-link-value">github.com/LucasIto17</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2026 Lucas Ogura Ito — London, UK</div>
+  <div class="footer-motto">"Think for yourself. Update constantly."</div>
+</footer>
+
+</body>
+</html>
