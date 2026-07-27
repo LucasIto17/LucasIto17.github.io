@@ -11,19 +11,18 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --navy:   #0D1B2A;
-    --navy2:  #162032;
-    --navy3:  #1E2D3E;
-    --slate:  #2C3E50;
-    --steel:  #4A6278;
-    --mist:   #8FA3B1;
-    --silver: #BDC9D2;
-    --cream:  #F0EDE6;
-    --paper:  #FAF8F4;
-    --gold:   #C9A84C;
-    --gold2:  #E8C97A;
-    --red:    #8B2635;
-    --white:  #FFFFFF;
+    --ink:      #1A1A1A;
+    --ink2:     #3A3935;
+    --muted:    #726F63;
+    --faint:    #A8A498;
+    --cream:    #F3EEE3;
+    --paper:    #FBF9F4;
+    --line:     rgba(36,84,209,0.14);
+    --line-soft:rgba(36,84,209,0.09);
+    --navy:     #2454D1;
+    --navy2:    #3D6FEF;
+    --navy-tint:rgba(36,84,209,0.06);
+    --white:    #FFFFFF;
 
     --serif: 'Playfair Display', Georgia, serif;
     --body:  'Source Serif 4', Georgia, serif;
@@ -36,8 +35,8 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--navy);
-    color: var(--cream);
+    background: var(--paper);
+    color: var(--ink2);
     font-family: var(--body);
     font-size: 17px;
     line-height: 1.75;
@@ -51,8 +50,8 @@
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 60px;
     height: 64px;
-    background: rgba(13, 27, 42, 0.95);
-    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+    background: rgba(251, 249, 244, 0.92);
+    border-bottom: 1px solid var(--line);
     backdrop-filter: blur(8px);
   }
 
@@ -61,7 +60,7 @@
     font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.04em;
-    color: var(--gold);
+    color: var(--navy);
     text-decoration: none;
   }
 
@@ -72,11 +71,11 @@
     font-weight: 300;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--silver);
+    color: var(--muted);
     text-decoration: none;
     transition: color var(--transition);
   }
-  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover { color: var(--navy); }
 
   /* ─── HERO ─── */
   #hero {
@@ -90,16 +89,16 @@
   .hero-grid-bg {
     position: absolute; inset: 0; pointer-events: none;
     background-image:
-      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(36,84,209,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36,84,209,0.05) 1px, transparent 1px);
     background-size: 80px 80px;
   }
 
   .hero-accent-line {
     position: absolute; left: 0; top: 0; bottom: 0;
     width: 4px;
-    background: linear-gradient(to bottom, transparent, var(--gold), var(--gold), transparent);
-    opacity: 0.6;
+    background: linear-gradient(to bottom, transparent, var(--navy), var(--navy), transparent);
+    opacity: 0.5;
   }
 
   .hero-content { max-width: var(--max); margin: 0 auto; position: relative; }
@@ -110,14 +109,14 @@
     font-weight: 300;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--navy);
     margin-bottom: 28px;
     display: flex; align-items: center; gap: 16px;
   }
   .hero-eyebrow::before {
     content: '';
     display: block; width: 40px; height: 1px;
-    background: var(--gold);
+    background: var(--navy);
   }
 
   .hero-name {
@@ -126,13 +125,13 @@
     font-weight: 700;
     line-height: 1.05;
     letter-spacing: -0.02em;
-    color: var(--white);
+    color: var(--ink);
     margin-bottom: 8px;
   }
 
   .hero-name em {
     font-style: italic;
-    color: var(--gold);
+    color: var(--navy);
   }
 
   .hero-title {
@@ -140,7 +139,7 @@
     font-size: clamp(20px, 2.5vw, 30px);
     font-weight: 400;
     font-style: italic;
-    color: var(--mist);
+    color: var(--muted);
     margin-bottom: 40px;
     line-height: 1.4;
   }
@@ -149,10 +148,10 @@
     max-width: 560px;
     font-size: 16px;
     font-weight: 300;
-    color: var(--silver);
+    color: var(--ink2);
     line-height: 1.85;
     margin-bottom: 52px;
-    border-left: 2px solid rgba(201,168,76,0.4);
+    border-left: 2px solid rgba(36,84,209,0.3);
     padding-left: 24px;
   }
 
@@ -175,19 +174,19 @@
   }
 
   .btn-primary {
-    background: var(--gold);
-    color: var(--navy);
+    background: var(--navy);
+    color: var(--white);
   }
-  .btn-primary:hover { background: var(--gold2); }
+  .btn-primary:hover { background: var(--navy2); }
 
   .btn-outline {
     background: transparent;
-    border: 1px solid rgba(201,168,76,0.5);
-    color: var(--gold);
+    border: 1px solid rgba(36,84,209,0.4);
+    color: var(--navy);
   }
   .btn-outline:hover {
-    background: rgba(201,168,76,0.08);
-    border-color: var(--gold);
+    background: var(--navy-tint);
+    border-color: var(--navy);
   }
 
   .hero-stats {
@@ -198,8 +197,8 @@
 
   .hero-stat {
     padding: 28px 40px;
-    border-left: 1px solid rgba(201,168,76,0.2);
-    border-bottom: 1px solid rgba(201,168,76,0.1);
+    border-left: 1px solid var(--line);
+    border-bottom: 1px solid var(--line-soft);
   }
   .hero-stat:last-child { border-bottom: none; }
 
@@ -207,7 +206,7 @@
     font-family: var(--serif);
     font-size: 36px;
     font-weight: 700;
-    color: var(--gold);
+    color: var(--navy);
     line-height: 1;
     margin-bottom: 4px;
   }
@@ -216,7 +215,7 @@
     font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--steel);
+    color: var(--muted);
   }
 
   /* ─── SECTIONS ─── */
@@ -233,7 +232,7 @@
     font-family: var(--mono);
     font-size: 11px;
     font-weight: 300;
-    color: var(--gold);
+    color: var(--navy);
     letter-spacing: 0.1em;
     padding-top: 6px;
     flex-shrink: 0;
@@ -247,7 +246,7 @@
     font-weight: 300;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--steel);
+    color: var(--muted);
     margin-bottom: 10px;
   }
 
@@ -256,14 +255,14 @@
     font-size: clamp(28px, 3.5vw, 44px);
     font-weight: 600;
     line-height: 1.15;
-    color: var(--white);
+    color: var(--ink);
     letter-spacing: -0.01em;
   }
 
-  .section-title em { font-style: italic; color: var(--gold); }
+  .section-title em { font-style: italic; color: var(--navy); }
 
   /* ─── ABOUT ─── */
-  #about { background: var(--navy2); }
+  #about { background: var(--cream); }
 
   .about-grid {
     display: grid;
@@ -274,7 +273,7 @@
 
   .about-text p {
     font-size: 16px;
-    color: var(--silver);
+    color: var(--ink2);
     line-height: 1.9;
     margin-bottom: 22px;
     font-weight: 300;
@@ -282,22 +281,23 @@
 
   .about-text p:last-child { margin-bottom: 0; }
 
-  .about-text strong { color: var(--cream); font-weight: 600; }
+  .about-text strong { color: var(--ink); font-weight: 600; }
 
   .about-sidebar {}
 
   .principle-card {
     padding: 28px;
-    border: 1px solid rgba(201,168,76,0.15);
+    border: 1px solid var(--line);
     margin-bottom: 16px;
     position: relative;
     transition: border-color var(--transition);
+    background: var(--paper);
   }
-  .principle-card:hover { border-color: rgba(201,168,76,0.4); }
+  .principle-card:hover { border-color: rgba(36,84,209,0.35); }
   .principle-card::before {
     content: '';
     position: absolute; left: 0; top: 0; bottom: 0;
-    width: 3px; background: var(--gold); opacity: 0;
+    width: 3px; background: var(--navy); opacity: 0;
     transition: opacity var(--transition);
   }
   .principle-card:hover::before { opacity: 1; }
@@ -305,7 +305,7 @@
   .principle-num {
     font-family: var(--mono);
     font-size: 10px;
-    color: var(--gold);
+    color: var(--navy);
     letter-spacing: 0.1em;
     margin-bottom: 8px;
     display: block;
@@ -315,166 +315,174 @@
     font-family: var(--serif);
     font-size: 17px;
     font-weight: 600;
-    color: var(--cream);
+    color: var(--ink);
     margin-bottom: 6px;
   }
 
   .principle-text {
     font-size: 14px;
-    color: var(--steel);
+    color: var(--muted);
     line-height: 1.7;
     font-weight: 300;
   }
 
-  /* ─── PROJECTS ─── */
-  #projects { background: var(--navy); }
-
-  .projects-grid {
+  /* ─── CARD GRID (used by Skills & Research) ─── */
+  .card-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2px;
-    background: rgba(201,168,76,0.08);
+    background: var(--line-soft);
   }
 
-  .project-card {
-    background: var(--navy);
+  .info-card {
+    background: var(--paper);
     padding: 36px 32px;
     text-decoration: none;
     display: block;
     position: relative;
     overflow: hidden;
     transition: background var(--transition);
-    cursor: pointer;
   }
 
-  .project-card:hover { background: var(--navy3); }
+  .info-card:hover { background: var(--cream); }
 
-  .project-card::after {
+  .info-card::after {
     content: '';
     position: absolute; bottom: 0; left: 0; right: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--gold), transparent);
+    background: linear-gradient(90deg, var(--navy), transparent);
     transform: scaleX(0); transform-origin: left;
     transition: transform var(--transition);
   }
-  .project-card:hover::after { transform: scaleX(1); }
+  .info-card:hover::after { transform: scaleX(1); }
 
-  .project-tag {
+  .card-tag {
     font-family: var(--mono);
     font-size: 9px;
     font-weight: 400;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--navy);
     margin-bottom: 18px;
     display: flex; align-items: center; gap: 8px;
   }
-  .project-tag::before {
+  .card-tag::before {
     content: '';
-    display: block; width: 20px; height: 1px; background: var(--gold);
+    display: block; width: 20px; height: 1px; background: var(--navy);
   }
 
-  .project-title {
+  .card-title {
     font-family: var(--serif);
     font-size: 22px;
     font-weight: 600;
-    color: var(--white);
+    color: var(--ink);
     line-height: 1.3;
     margin-bottom: 14px;
     letter-spacing: -0.01em;
   }
 
-  .project-desc {
+  .card-desc {
     font-size: 14px;
-    color: var(--steel);
+    color: var(--muted);
     line-height: 1.75;
     font-weight: 300;
     margin-bottom: 28px;
   }
 
-  .project-meta {
+  .card-meta {
     display: flex; gap: 16px; flex-wrap: wrap;
   }
 
-  .project-chip {
+  .card-chip {
     font-family: var(--mono);
     font-size: 10px;
     letter-spacing: 0.08em;
-    color: var(--mist);
-    background: rgba(143,163,177,0.08);
+    color: var(--ink2);
+    background: rgba(36,84,209,0.05);
     padding: 4px 12px;
-    border: 1px solid rgba(143,163,177,0.15);
+    border: 1px solid var(--line);
   }
 
-  /* ─── VIEWS ─── */
-  #views { background: var(--navy2); }
+  .card-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
 
-  .views-list { display: flex; flex-direction: column; gap: 0; }
+  .card-action {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    text-decoration: none;
+    border: 1px solid rgba(36,84,209,0.4);
+    color: var(--navy);
+    transition: all var(--transition);
+  }
+  .card-action:hover { background: var(--navy-tint); border-color: var(--navy); }
+  .card-action-primary { background: var(--navy); color: var(--white); border-color: var(--navy); }
+  .card-action-primary:hover { background: var(--navy2); }
 
-  .view-item {
+  /* ─── SKILLS ─── */
+  #skills { background: var(--paper); }
+
+  /* ─── EDUCATION ─── */
+  #education { background: var(--cream); }
+
+  .edu-list { display: flex; flex-direction: column; gap: 0; }
+
+  .edu-item {
     display: grid;
-    grid-template-columns: 140px 1fr auto;
+    grid-template-columns: 140px 1fr;
     gap: 40px;
     align-items: baseline;
     padding: 32px 0;
-    border-bottom: 1px solid rgba(201,168,76,0.1);
-    text-decoration: none;
-    transition: all var(--transition);
-    cursor: pointer;
+    border-bottom: 1px solid var(--line-soft);
   }
-  .view-item:first-child { border-top: 1px solid rgba(201,168,76,0.1); }
-  .view-item:hover .view-title { color: var(--gold); }
+  .edu-item:first-child { border-top: 1px solid var(--line-soft); }
 
-  .view-date {
+  .edu-status {
     font-family: var(--mono);
     font-size: 11px;
     font-weight: 300;
-    color: var(--steel);
+    color: var(--muted);
     letter-spacing: 0.06em;
     padding-top: 3px;
   }
 
-  .view-content {}
+  .edu-content {}
 
-  .view-category {
+  .edu-category {
     font-family: var(--mono);
     font-size: 9px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--navy);
     margin-bottom: 6px;
   }
 
-  .view-title {
+  .edu-title {
     font-family: var(--serif);
     font-size: 20px;
     font-weight: 600;
-    color: var(--cream);
+    color: var(--ink);
     line-height: 1.3;
     margin-bottom: 8px;
-    transition: color var(--transition);
     letter-spacing: -0.01em;
   }
 
-  .view-excerpt {
+  .edu-excerpt {
     font-size: 14px;
-    color: var(--steel);
+    color: var(--muted);
     font-weight: 300;
     line-height: 1.6;
   }
 
-  .view-arrow {
-    font-size: 18px;
-    color: var(--steel);
-    transition: all var(--transition);
-    flex-shrink: 0;
-  }
-  .view-item:hover .view-arrow { color: var(--gold); transform: translateX(4px); }
+  /* ─── PROJECTS ─── */
+  #projects { background: var(--paper); }
 
   /* ─── CONTACT ─── */
   #contact {
-    background: var(--navy);
-    border-top: 1px solid rgba(201,168,76,0.15);
+    background: var(--cream);
+    border-top: 1px solid var(--line);
   }
 
   .contact-grid {
@@ -486,7 +494,7 @@
 
   .contact-text p {
     font-size: 16px;
-    color: var(--silver);
+    color: var(--ink2);
     line-height: 1.85;
     margin-bottom: 20px;
     font-weight: 300;
@@ -498,40 +506,41 @@
     display: flex; align-items: center; gap: 20px;
     text-decoration: none;
     padding: 20px 24px;
-    border: 1px solid rgba(201,168,76,0.12);
+    border: 1px solid var(--line);
     transition: all var(--transition);
+    background: var(--paper);
   }
   .contact-link:hover {
-    border-color: rgba(201,168,76,0.4);
-    background: rgba(201,168,76,0.04);
+    border-color: rgba(36,84,209,0.35);
+    background: var(--navy-tint);
   }
 
   .contact-link-icon {
     width: 36px; height: 36px;
     display: flex; align-items: center; justify-content: center;
-    border: 1px solid rgba(201,168,76,0.3);
+    border: 1px solid rgba(36,84,209,0.3);
     flex-shrink: 0;
   }
-  .contact-link-icon svg { width: 16px; height: 16px; fill: var(--gold); }
+  .contact-link-icon svg { width: 16px; height: 16px; fill: var(--navy); }
 
   .contact-link-label {
     font-family: var(--mono);
     font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--steel);
+    color: var(--muted);
     margin-bottom: 2px;
   }
   .contact-link-value {
     font-size: 15px;
-    color: var(--cream);
+    color: var(--ink);
     font-weight: 300;
   }
 
   /* ─── FOOTER ─── */
   footer {
-    background: var(--navy);
-    border-top: 1px solid rgba(201,168,76,0.1);
+    background: var(--paper);
+    border-top: 1px solid var(--line);
     padding: 32px 60px;
     display: flex;
     align-items: center;
@@ -541,7 +550,7 @@
   .footer-copy {
     font-family: var(--mono);
     font-size: 11px;
-    color: var(--steel);
+    color: var(--muted);
     letter-spacing: 0.06em;
   }
 
@@ -549,56 +558,21 @@
     font-family: var(--serif);
     font-size: 13px;
     font-style: italic;
-    color: var(--steel);
+    color: var(--muted);
   }
 
   /* ─── DIVIDER ─── */
-  .gold-divider {
+  .divider {
     width: 60px; height: 1px;
-    background: var(--gold);
+    background: var(--navy);
     margin: 32px 0;
-    opacity: 0.6;
-  }
-
-  /* ─── COMING SOON ─── */
-  .coming-soon {
-    border: 1px solid rgba(201,168,76,0.15);
-    padding: 64px 48px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .cs-dots {
-    font-family: var(--mono);
-    font-size: 22px;
-    color: var(--gold);
-    letter-spacing: 0.3em;
-    opacity: 0.6;
-  }
-
-  .cs-title {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--cream);
-    letter-spacing: -0.01em;
-  }
-
-  .cs-text {
-    font-size: 15px;
-    color: var(--steel);
-    font-weight: 300;
-    max-width: 480px;
-    line-height: 1.75;
+    opacity: 0.5;
   }
 
   /* ─── SCROLLBAR ─── */
   ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--navy); }
-  ::-webkit-scrollbar-thumb { background: var(--steel); }
+  ::-webkit-scrollbar-track { background: var(--paper); }
+  ::-webkit-scrollbar-thumb { background: var(--faint); }
 
   /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
@@ -621,9 +595,9 @@
     #hero { padding: 120px 24px 72px; }
     .hero-stats { display: none; }
     .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .view-item { grid-template-columns: 1fr; gap: 4px; }
-    .view-date { display: none; }
+    .card-grid { grid-template-columns: 1fr; }
+    .edu-item { grid-template-columns: 1fr; gap: 4px; }
+    .edu-status { display: none; }
     footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
   }
 </style>
@@ -635,8 +609,9 @@
   <a class="nav-logo" href="#hero">L —</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
     <li><a href="#projects">Research</a></li>
-    <li><a href="#views">Views</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -648,29 +623,28 @@
   <div class="hero-content">
     <div class="hero-eyebrow">MSc Finance & Accounting · Imperial College London</div>
     <h1 class="hero-name">Lucas<br><em>Ogura Ito</em></h1>
-    <p class="hero-title">Macro Finance & Quantitative Finance</p>
+    <p class="hero-title">Quantitative & Macro Finance</p>
     <p class="hero-desc">
-      I study capital markets at the intersection of finance, mathematics, and programming —
-      combining market knowledge with the ability to build and implement quantitative models
-      through computational methods.
+      I study financial markets through macroeconomics and quantitative methods, combining
+      market judgment with the technical skills to build and test data-driven models.
     </p>
     <div class="hero-cta">
       <a href="#projects" class="btn btn-primary">View Research</a>
-      <a href="#views" class="btn btn-outline">Read My Views</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
     </div>
   </div>
   <div class="hero-stats">
     <div class="hero-stat">
       <div class="stat-num">BBA</div>
-      <div class="stat-label">Finance & Business Analytics</div>
+      <div class="stat-label">Finance & Business Analytics · Distinction</div>
     </div>
     <div class="hero-stat">
       <div class="stat-num">MSc</div>
       <div class="stat-label">Finance & Accounting · In Progress</div>
     </div>
     <div class="hero-stat">
-      <div class="stat-num">ICL</div>
-      <div class="stat-label">Imperial College London</div>
+      <div class="stat-num">'20</div>
+      <div class="stat-label">Olympic Pre-Selection · Swimming, Brazil</div>
     </div>
   </div>
 </section>
@@ -689,44 +663,146 @@
       <div class="about-text">
         <p>
           I am an <strong>MSc Finance & Accounting student at Imperial College Business School</strong>,
-          where I hold an Academic Excellence Scholarship. My undergraduate work — a Bachelor's in
-          Business Administration majoring in Finance and Business Analytics — gave me a rigorous
-          foundation in both quantitative methods and business strategy.
+          where I hold an Academic Excellence Scholarship. I graduated from Hult International
+          Business School with a <strong>BBA in Finance & Business Analytics</strong>, earning
+          Distinction with a 3.92 GPA and the Growth Mindset and Academic Excellence Scholarships.
         </p>
         <p>
-          My goal is to develop into a <strong>multi-strategy professional</strong>, equally capable in
-          macro and quantitative investing. I believe these two approaches are not competing — they are
-          complementary. Combining top-down macro insight with the ability to build and implement
-          mathematical models through programming creates a skill set that is genuinely valuable
-          to any investment firm.
+          My approach combines quantitative and fundamental analysis. I lean toward
+          <strong>systematic, data-driven models</strong>, but I also value macroeconomic and
+          market judgment — the two work best together, not as substitutes for each other.
         </p>
         <p>
-          I am driven by curiosity and a commitment to constant improvement. I approach my craft
-          the same way I approach everything I do — with discipline and a desire to be among the best.
-          Outside of finance, I play drums and compete in swimming, disciplines that have reinforced
-          how I think about <strong>precision, consistency, and performance</strong>.
+          I work across <strong>Python, R, C++, and VBA</strong>, and I am currently preparing for
+          the <strong>CFA Level I</strong> exam.
         </p>
-        <div class="gold-divider"></div>
         <p>
-          My ambition is straightforward: to be among the best in my field, within an environment
-          that rewards rigorous thinking and rewards those who keep getting better.
+          My MSc Applied Project studies the <strong>forward premium puzzle</strong> — the failure
+          of uncovered interest rate parity to hold in FX markets — reflecting my interest in
+          empirical, FX-focused macro research.
+        </p>
+        <div class="divider"></div>
+        <p>
+          Outside of finance, I was pre-selected for the <strong>2020 Olympic Games</strong> as a
+          competitive swimmer for Brazil, and I bring the same discipline and consistency to my
+          academic and professional work. I also have a personal interest in football analytics,
+          applying similar analytical methods outside of finance.
+        </p>
+        <p>
+          My goal is to build a career in asset management or macro/quantitative research, in an
+          environment that rewards rigorous thinking.
         </p>
       </div>
       <div class="about-sidebar">
         <div class="principle-card">
           <span class="principle-num">Principle I</span>
-          <div class="principle-title">Data Drives Decisions</div>
-          <div class="principle-text">Opinions without evidence are just noise. Every investment view I hold is built from data — and updated when the data changes.</div>
+          <div class="principle-title">Quantitative & Fundamental</div>
+          <div class="principle-text">I combine systematic, data-driven models with macroeconomic and market judgment, rather than relying on one alone.</div>
         </div>
         <div class="principle-card">
           <span class="principle-num">Principle II</span>
-          <div class="principle-title">Macro and Quant Are One</div>
-          <div class="principle-text">The best analysis combines top-down market insight with rigorous quantitative methods. I do not choose between the two — I develop both.</div>
+          <div class="principle-title">Technical Skills, Applied</div>
+          <div class="principle-text">Programming and quantitative methods are most useful when paired with real knowledge of how markets and economies work.</div>
         </div>
         <div class="principle-card">
           <span class="principle-num">Principle III</span>
-          <div class="principle-title">Always Be Improving</div>
-          <div class="principle-text">Good enough is not the goal. I hold myself to a high standard, track my progress honestly, and stay committed to getting better at my craft every day.</div>
+          <div class="principle-title">Always Improving</div>
+          <div class="principle-text">I hold myself to a high standard and work to improve consistently, an approach shaped by years of competitive swimming.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div class="section-title-block">
+        <div class="section-label">Capabilities</div>
+        <h2 class="section-title">Skills & <em>Tools</em></h2>
+      </div>
+    </div>
+    <div class="card-grid">
+
+      <div class="info-card">
+        <div class="card-tag">Programming</div>
+        <div class="card-title">Languages & Tools</div>
+        <div class="card-desc">
+          Experience across languages for data analysis and financial modelling.
+        </div>
+        <div class="card-meta">
+          <span class="card-chip">Python</span>
+          <span class="card-chip">R</span>
+          <span class="card-chip">C++</span>
+          <span class="card-chip">VBA</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="card-tag">Modelling</div>
+        <div class="card-title">Financial Modelling</div>
+        <div class="card-desc">
+          Valuation, derivatives, and the design of systematic and algorithmic trading strategies.
+        </div>
+        <div class="card-meta">
+          <span class="card-chip">Valuation</span>
+          <span class="card-chip">Derivatives</span>
+          <span class="card-chip">Systematic Strategies</span>
+          <span class="card-chip">Algorithmic Trading</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="card-tag">Markets</div>
+        <div class="card-title">Macro & Markets</div>
+        <div class="card-desc">
+          Knowledge of macroeconomics, monetary policy, and how financial markets function.
+        </div>
+        <div class="card-meta">
+          <span class="card-chip">Macroeconomics</span>
+          <span class="card-chip">FX Markets</span>
+          <span class="card-chip">Monetary Policy</span>
+          <span class="card-chip">Empirical Finance</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-title-block">
+        <div class="section-label">Academics</div>
+        <h2 class="section-title">Education</h2>
+      </div>
+    </div>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div class="edu-status">In Progress</div>
+        <div class="edu-content">
+          <div class="edu-category">MSc, Finance & Accounting</div>
+          <div class="edu-title">Imperial College Business School</div>
+          <div class="edu-excerpt">
+            Academic Excellence Scholarship. Applied Project: "The Forward Premium Puzzle" —
+            empirical research on FX markets and uncovered interest rate parity.
+          </div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-status">Completed</div>
+        <div class="edu-content">
+          <div class="edu-category">BBA, Finance & Business Analytics</div>
+          <div class="edu-title">Hult International Business School</div>
+          <div class="edu-excerpt">
+            Graduated with Distinction, 3.92 GPA. Recipient of the Growth Mindset Scholarship and
+            Academic Excellence Scholarship.
+          </div>
         </div>
       </div>
     </div>
@@ -737,34 +813,58 @@
 <section id="projects">
   <div class="section-inner">
     <div class="section-header">
-      <div class="section-num">02</div>
+      <div class="section-num">04</div>
       <div class="section-title-block">
         <div class="section-label">Work</div>
         <h2 class="section-title">Research & <em>Projects</em></h2>
       </div>
     </div>
-    <div class="coming-soon">
-      <div class="cs-dots">· · ·</div>
-      <div class="cs-title">Work in Progress</div>
-      <div class="cs-text">Research and project work is currently underway. This section will be updated as pieces are completed — check back soon.</div>
-    </div>
-  </div>
-</section>
+    <div class="card-grid">
 
-<!-- VIEWS -->
-<section id="views">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-num">03</div>
-      <div class="section-title-block">
-        <div class="section-label">Perspectives</div>
-        <h2 class="section-title">My <em>Views</em></h2>
+      <!-- MSc Applied Project -->
+      <div class="info-card">
+        <div class="card-tag">MSc Applied Project · In Progress</div>
+        <div class="card-title">The Forward Premium Puzzle</div>
+        <div class="card-desc">
+          A study of the forward premium puzzle — the failure of uncovered interest rate parity
+          to hold in FX markets — combining econometric analysis with macroeconomic reasoning.
+        </div>
+        <div class="card-meta">
+          <span class="card-chip">FX Markets</span>
+          <span class="card-chip">UIP</span>
+          <span class="card-chip">Econometrics</span>
+          <span class="card-chip">Empirical Research</span>
+        </div>
       </div>
-    </div>
-    <div class="coming-soon">
-      <div class="cs-dots">· · ·</div>
-      <div class="cs-title">Coming Soon</div>
-      <div class="cs-text">Written perspectives on macro, markets, and finance are on the way. This section will be populated as pieces are published.</div>
+
+      <!-- Football Analytics -->
+      <div class="info-card">
+        <div class="card-tag">Personal Interest</div>
+        <div class="card-title">Football Analytics</div>
+        <div class="card-desc">
+          A personal project applying data analysis and statistical modelling to football,
+          pursued out of interest outside of finance.
+        </div>
+        <div class="card-meta">
+          <span class="card-chip">Data Analysis</span>
+          <span class="card-chip">Sports Analytics</span>
+          <span class="card-chip">Python</span>
+        </div>
+      </div>
+
+      <!-- Placeholder -->
+      <div class="info-card">
+        <div class="card-tag">In Progress</div>
+        <div class="card-title">More Coming Soon</div>
+        <div class="card-desc">
+          Further macro and quantitative research is in progress.
+        </div>
+        <div class="card-meta">
+          <span class="card-chip">Macro</span>
+          <span class="card-chip">Quant</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -773,7 +873,7 @@
 <section id="contact">
   <div class="section-inner">
     <div class="section-header">
-      <div class="section-num">04</div>
+      <div class="section-num">05</div>
       <div class="section-title-block">
         <div class="section-label">Connect</div>
         <h2 class="section-title">Get in <em>Touch</em></h2>
@@ -782,17 +882,17 @@
     <div class="contact-grid">
       <div class="contact-text">
         <p>
-          I am always open to conversations about macro, quantitative finance, and markets.
-          If you are working on something rigorous — whether in asset management, investment
-          research, or academia — I would be glad to connect.
+          I am open to conversations about macro, quantitative finance, and financial markets.
+          If you are working in asset management, investment research, or academia, I would be
+          glad to connect.
         </p>
         <p>
-          I am currently open to roles in asset management, macro research, quantitative research,
-          and research assistant positions at investment firms or academic institutions.
-          I am based in London.
+          I am a soon-to-be graduate of the MSc Finance & Accounting programme at Imperial College
+          London, and I am open to roles in asset management, macro research, and quantitative
+          research, as well as research assistant positions. I am based in London.
         </p>
-        <div class="gold-divider"></div>
-        <p style="font-size: 14px; color: var(--steel);">
+        <div class="divider"></div>
+        <p style="font-size: 14px; color: var(--muted);">
           Response time: typically within 48 hours.
         </p>
       </div>
